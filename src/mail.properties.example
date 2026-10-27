@@ -1,0 +1,5 @@
+mail.host=smtp.gmail.com
+mail.port=587
+mail.user=your.name@gmail.com
+mail.password=xxxx xxxx xxxx xxxx
+mail.from=VITALIS Hospital

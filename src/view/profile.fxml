@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="16.0" styleClass="page"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.ProfileController">
+
+    <VBox spacing="2.0">
+        <Label styleClass="page-title" text="My profile"/>
+    </VBox>
+
+    <HBox spacing="16.0" VBox.vgrow="ALWAYS">
+        <VBox prefWidth="480.0" spacing="7.0" styleClass="card" HBox.hgrow="ALWAYS">
+            <Label styleClass="section-title" text="My details"/>
+            <HBox alignment="CENTER_LEFT" spacing="16.0">
+                <StackPane fx:id="photoBox" minHeight="88.0" minWidth="88.0" prefHeight="88.0" prefWidth="88.0"/>
+                <VBox spacing="6.0">
+                    <HBox spacing="8.0">
+                        <Button onAction="#handleChangePhoto" text="Change photo"/>
+                        <Button onAction="#handleRemovePhoto" styleClass="button-secondary" text="Remove photo"/>
+                    </HBox>
+                    <Label fx:id="lblPhotoStatus" styleClass="error-label" wrapText="true" text=""/>
+                </VBox>
+            </HBox>
+            <Label fx:id="lblAccount" styleClass="muted" wrapText="true" text=""/>
+
+            <Label styleClass="field-label" text="FULL NAME"/>
+            <TextField fx:id="txtFullName"/>
+
+            <Label styleClass="field-label" text="PHONE"/>
+            <TextField fx:id="txtPhone" promptText="Contact number"/>
+
+            <Label styleClass="field-label" text="E-MAIL (USED TO RESET A FORGOTTEN PASSWORD)"/>
+            <TextField fx:id="txtEmail" promptText="name@example.com"/>
+
+            <Label styleClass="field-label" text="DATE OF BIRTH"/>
+            <DatePicker fx:id="dpBirth" maxWidth="Infinity" promptText="Select date of birth"/>
+
+            <Label styleClass="field-label" text="GENDER"/>
+            <ComboBox fx:id="cmbGender" maxWidth="Infinity"/>
+
+            <Label styleClass="field-label" text="CURRENT PASSWORD (NEEDED TO CHANGE THE PHONE OR THE E-MAIL)"/>
+            <PasswordField fx:id="txtProfilePassword" promptText="Your current password"/>
+
+            <Button maxWidth="Infinity" onAction="#handleSaveProfile" text="Save my details">
+                <VBox.margin>
+                    <Insets top="3.0"/>
+                </VBox.margin>
+            </Button>
+            <Label fx:id="lblProfileStatus" styleClass="error-label" wrapText="true" text=""/>
+        </VBox>
+
+        <VBox prefWidth="360.0" spacing="7.0" styleClass="card">
+            <Label styleClass="section-title" text="Change my password"/>
+
+            <Label styleClass="field-label" text="CURRENT PASSWORD"/>
+            <PasswordField fx:id="txtOldPassword" promptText="Your current password"/>
+
+            <Label styleClass="field-label" text="NEW PASSWORD"/>
+            <PasswordField fx:id="txtNewPassword" promptText="Minimum 6 characters"/>
+
+            <Label styleClass="field-label" text="REPEAT THE NEW PASSWORD"/>
+            <PasswordField fx:id="txtConfirmPassword" promptText="Repeat the new password"/>
+
+            <Button maxWidth="Infinity" onAction="#handleChangePassword" styleClass="button-success" text="Change password">
+                <VBox.margin>
+                    <Insets top="3.0"/>
+                </VBox.margin>
+            </Button>
+            <Label fx:id="lblPasswordStatus" styleClass="error-label" wrapText="true" text=""/>
+        </VBox>
+    </HBox>
+</VBox>
+

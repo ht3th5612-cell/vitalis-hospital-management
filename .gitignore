@@ -1,0 +1,11 @@
+bin/
+
+src/db.properties
+
+src/mail.properties
+
+.settings/
+*.class
+.idea/
+.vscode/
+chat_files/

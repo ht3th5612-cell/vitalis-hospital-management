@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="18.0" styleClass="page"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.DashboardController">
+
+    <HBox alignment="CENTER_LEFT" spacing="12.0">
+        <VBox spacing="2.0">
+            <Label fx:id="lblWelcome" styleClass="page-title" text="Welcome"/>
+            <Label fx:id="lblSubtitle" styleClass="muted" text=""/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="lblRole" styleClass="pill, pill-green" text=""/>
+        <Label fx:id="lblDate" styleClass="date-chip" text=""/>
+        <Button onAction="#handleRefresh" styleClass="button-secondary" text="Refresh"/>
+    </HBox>
+
+    <VBox fx:id="content" spacing="16.0"/>
+</VBox>

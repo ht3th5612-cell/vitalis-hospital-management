@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="16.0" styleClass="page"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.AppointmentController">
+
+    <HBox alignment="CENTER_LEFT" spacing="10.0">
+        <VBox spacing="2.0">
+            <Label styleClass="page-title" text="Appointments"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="txtSearch" prefWidth="250.0" promptText="Search patient, doctor, status or room"/>
+        <Button onAction="#handleRefresh" styleClass="button-secondary" text="Refresh"/>
+    </HBox>
+
+    <HBox spacing="16.0" VBox.vgrow="ALWAYS">
+        <VBox spacing="10.0" styleClass="card" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="section-title" text="Appointment schedule"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="lblStatus" styleClass="error-label" text=""/>
+            </HBox>
+            <TableView fx:id="table" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colId" prefWidth="45.0" text="ID"/>
+                    <TableColumn fx:id="colPatient" prefWidth="125.0" text="Patient"/>
+                    <TableColumn fx:id="colDoctor" prefWidth="120.0" text="Doctor"/>
+                    <TableColumn fx:id="colDate" prefWidth="95.0" text="Date"/>
+                    <TableColumn fx:id="colTime" prefWidth="55.0" text="Time"/>
+                    <TableColumn fx:id="colType" prefWidth="80.0" text="Visit"/>
+                    <TableColumn fx:id="colRoom" prefWidth="80.0" text="Room"/>
+                    <TableColumn fx:id="colStatus" prefWidth="85.0" text="Status"/>
+                </columns>
+            </TableView>
+        </VBox>
+
+        <ScrollPane fx:id="formCard" fitToWidth="true" hbarPolicy="NEVER" prefWidth="350.0" styleClass="form-scroll">
+            <VBox spacing="7.0" styleClass="card">
+                <Label styleClass="section-title" text="Book / update"/>
+
+                <Label styleClass="field-label" text="PATIENT"/>
+                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                    <Label fx:id="lblPatient" maxWidth="Infinity" text="No patient chosen" wrapText="true" HBox.hgrow="ALWAYS"/>
+                    <Button minWidth="-Infinity" onAction="#handleFindPatient" styleClass="button-secondary" text="Find patient"/>
+                </HBox>
+
+                <Label styleClass="field-label" text="DOCTOR"/>
+                <ComboBox fx:id="cmbDoctor" maxWidth="Infinity" promptText="Select doctor"/>
+
+                <Label styleClass="field-label" text="DATE"/>
+                <DatePicker fx:id="dpDate" maxWidth="Infinity" promptText="Select date"/>
+
+                <Label styleClass="field-label" text="TIME (HH:MM)"/>
+                <TextField fx:id="txtTime" promptText="09:30"/>
+
+                <Label styleClass="field-label" text="REASON"/>
+                <TextField fx:id="txtReason" promptText="Reason for the visit"/>
+
+                <Label styleClass="field-label" text="STATUS"/>
+                <ComboBox fx:id="cmbStatus" maxWidth="Infinity" promptText="Appointment status"/>
+
+                <Button fx:id="btnBook" maxWidth="Infinity" onAction="#handleBook" text="Book appointment">
+                    <VBox.margin>
+                        <Insets top="3.0"/>
+                    </VBox.margin>
+                </Button>
+                <Button fx:id="btnWalkIn" maxWidth="Infinity" onAction="#handleWalkIn" styleClass="button-success"
+                        text="Walk-in: patient is here now"/>
+                <HBox spacing="8.0">
+                    <Button fx:id="btnUpdateStatus" maxWidth="Infinity" onAction="#handleUpdateStatus" HBox.hgrow="ALWAYS"
+                            styleClass="button-success" text="Update status"/>
+                    <Button onAction="#handleClear" styleClass="button-secondary" text="Clear"/>
+                </HBox>
+
+                <Label styleClass="section-title" text="Admit / discharge">
+                    <VBox.margin>
+                        <Insets top="8.0"/>
+                    </VBox.margin>
+                </Label>
+                <Label styleClass="field-label" text="ROOM"/>
+                <ComboBox fx:id="cmbRoom" maxWidth="Infinity" promptText="Select a room with a free bed"/>
+                <Label fx:id="lblRooms" styleClass="muted" text="" wrapText="true"/>
+                <HBox spacing="8.0">
+                    <Button fx:id="btnAdmit" minWidth="-Infinity" maxWidth="Infinity" onAction="#handleAdmit" HBox.hgrow="ALWAYS" text="Admit"/>
+                    <Button fx:id="btnDischarge" minWidth="-Infinity" maxWidth="Infinity" onAction="#handleDischarge" HBox.hgrow="ALWAYS"
+                            styleClass="button-success" text="Discharge"/>
+                </HBox>
+
+                <Button fx:id="btnDelete" maxWidth="Infinity" onAction="#handleDelete" styleClass="button-danger"
+                        text="Delete selected appointment">
+                    <VBox.margin>
+                        <Insets top="8.0"/>
+                    </VBox.margin>
+                </Button>
+            </VBox>
+        </ScrollPane>
+    </HBox>
+</VBox>
+
